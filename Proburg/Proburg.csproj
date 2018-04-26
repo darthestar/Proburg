@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -177,11 +183,44 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Data\EventContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804261851553_AddedCityandEventtables.cs" />
+    <Compile Include="Migrations\201804261851553_AddedCityandEventtables.Designer.cs">
+      <DependentUpon>201804261851553_AddedCityandEventtables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804261914172_AddedAttendees.cs" />
+    <Compile Include="Migrations\201804261914172_AddedAttendees.Designer.cs">
+      <DependentUpon>201804261914172_AddedAttendees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804261935574_AddedIcollectionEvent.cs" />
+    <Compile Include="Migrations\201804261935574_AddedIcollectionEvent.Designer.cs">
+      <DependentUpon>201804261935574_AddedIcollectionEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804261939464_UpdatedICollectionEventwithHashSet.cs" />
+    <Compile Include="Migrations\201804261939464_UpdatedICollectionEventwithHashSet.Designer.cs">
+      <DependentUpon>201804261939464_UpdatedICollectionEventwithHashSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804261949207_IcollectionforEventandAttendee.cs" />
+    <Compile Include="Migrations\201804261949207_IcollectionforEventandAttendee.Designer.cs">
+      <DependentUpon>201804261949207_IcollectionforEventandAttendee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804262152308_updatecitytable.cs" />
+    <Compile Include="Migrations\201804262152308_updatecitytable.Designer.cs">
+      <DependentUpon>201804262152308_updatecitytable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804262240077_addedCitiesandEvents.cs" />
+    <Compile Include="Migrations\201804262240077_addedCitiesandEvents.Designer.cs">
+      <DependentUpon>201804262240077_addedCitiesandEvents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Attendee.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +230,11 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -215,6 +259,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -238,7 +284,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -252,6 +297,29 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804261851553_AddedCityandEventtables.resx">
+      <DependentUpon>201804261851553_AddedCityandEventtables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804261914172_AddedAttendees.resx">
+      <DependentUpon>201804261914172_AddedAttendees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804261935574_AddedIcollectionEvent.resx">
+      <DependentUpon>201804261935574_AddedIcollectionEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804261939464_UpdatedICollectionEventwithHashSet.resx">
+      <DependentUpon>201804261939464_UpdatedICollectionEventwithHashSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804261949207_IcollectionforEventandAttendee.resx">
+      <DependentUpon>201804261949207_IcollectionforEventandAttendee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804262152308_updatecitytable.resx">
+      <DependentUpon>201804262152308_updatecitytable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804262240077_addedCitiesandEvents.resx">
+      <DependentUpon>201804262240077_addedCitiesandEvents.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
