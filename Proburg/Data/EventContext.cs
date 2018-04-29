@@ -17,5 +17,6 @@ namespace Proburg.Data
         public DbSet<City> Cities { get; set; }
         public DbSet<Event> Events{get;set;}
         public DbSet<Attendee> Attendees { get; set; }
+       
     }
 }
