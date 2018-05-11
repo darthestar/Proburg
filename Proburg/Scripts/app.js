@@ -17,18 +17,7 @@ app.config(function ($routeProvider) {
 
 })
 
-app.controller("eventDetailsController", ["$scope", "$routeParams", "$http", function ($scope, $routeParams, $http) {
-    console.log($routeParams);
-    $http({
-        method: "GET",
-        url: "/api/events/" + $routeParams.eventID
-    }).then(resp => {
-        console.log(resp);
-        $scope.event = resp.data;
-    })
-}])
-
-app.controller("allEventsController", ["$scope", "$http", function($scope, $http) {
+app.controller("allEventsController", ["$scope", "$http", function ($scope, $http) {
 
     $http({
         method: "GET",
@@ -37,5 +26,35 @@ app.controller("allEventsController", ["$scope", "$http", function($scope, $http
         $scope.events = resp.data
     })
 }])
+app.controller("eventDetailsController", ["$scope", "$routeParams", "$http", function ($scope, $routeParams, $http) {
+    console.log("in events details");
+
+    
+    $scope.enrollAttendee = function (event) {
+        $http({
+            method: "POST",
+            url: "/api/events/" + event.ID + "/EnrollAttendee/",
+            data: {
+                Email: $scope.attendeeEmail
+            }
+        }).then(resp => {
+            getData();
+        })
+    }
+    const getData = () => {
+        $http({
+            method: "GET",
+            url: "/api/events/" + $routeParams.eventID
+        }).then(resp => {
+            console.log(resp);
+            $scope.event = resp.data;
+        })
+    }
+
+    getData();
+    
+}])
+
+
 
 

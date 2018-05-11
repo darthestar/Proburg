@@ -21,6 +21,6 @@ namespace Proburg.Models
         public int? CityID { get; set; }
         public City City { get; set; }
 
-        public virtual ICollection<Attendee> Attendees { get; set; } = new HashSet<Attendee>();
+        public ICollection<Attendee> Attendees { get; set; } = new HashSet<Attendee>();
     }
 }

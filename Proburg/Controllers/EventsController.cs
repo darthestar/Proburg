@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace Proburg.Controllers
 {
-    
+
     public class EventsController : ApiController
     {
         public IHttpActionResult Get(string title = null)
@@ -17,7 +17,7 @@ namespace Proburg.Controllers
             try
             {
                 var db = new EventContext();
-                var query = db.Events.Include(i => i.Attendees).Include(i => i.City);
+                var query = db.Events.Include(i => i.City);
 
                 if (!String.IsNullOrEmpty(title))
                 {
@@ -42,7 +42,7 @@ namespace Proburg.Controllers
             }
         }
 
-        
+
         //public IEnumerable<Event> Get()
         //{
 
@@ -53,14 +53,15 @@ namespace Proburg.Controllers
         //    }
         //}
         [HttpGet]
-        public IHttpActionResult GetOneEvent(int id)
+        [Route ("api/events/{eventID}")]
+        public IHttpActionResult GetOneEvent(int eventID)
         {
             using (var db = new EventContext())
             {
                 var anEvent = db.Events
                     .Include(i=> i.Attendees)
                     .Include(i=> i.City)
-                    .SingleOrDefault(s => s.ID == id);
+                    .SingleOrDefault(s => s.ID == eventID);
                 if (anEvent == null)
                 {
                     return NotFound();

@@ -4,5 +4,16 @@
     </h1>
     <p>{{event.LongDescription}}</p>
     <p>{{event.Date}}</p>
+    <p>{{event.City.Name}}</p>
 
+
+    <input type="text" ng-model="attendeeEmail" required placeholder="Enter your email">
+    <button type="submit" class="btn btn-info" ng-click="enrollAttendee(event)">Join!</button>
+
+    <p>Event attendees:</p>
+    <ul>
+        <li ng-repeat="attendee in event.Attendees track by $index">
+            {{attendee.Email}}
+        </li>
+    </ul>
 </div>
